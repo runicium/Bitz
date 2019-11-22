@@ -4,7 +4,6 @@ import discord4j.core.DiscordClientBuilder;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.util.Properties;
 
 public class Main {
@@ -17,6 +16,8 @@ public class Main {
 
         //establishes a connection to server
         client.login().block();
+
+        //send a message to say hello
     }
     private static String getToken() {
         String token = "";
