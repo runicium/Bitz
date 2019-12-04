@@ -11,38 +11,41 @@ import javax.security.auth.login.LoginException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
 public class Main extends ListenerAdapter implements EventListener {
-    static final String BESTPREFIX = ".";
-    static List<String[][]> prefix;
+    static final private String  BESTPREFIX = ".";
+    static private List<String[][]> prefix = new ArrayList<>();
 
     public static void main(String[] args) throws LoginException {
         JDA jda = new JDABuilder(getToken()).addEventListeners(new Main()).setActivity(Activity.watching("my master create me")).build();
     }
-    @Override
-    public void onMessageRecieved(MessageReceivedEvent event) {
+    public void onMessageReceived(MessageReceivedEvent event) {
         Message msg = event.getMessage();
         Guild guild = msg.getGuild();
-        if(msg.getContentRaw().equals(BESTPREFIX + "prefix") || msg.getContentRaw().equals(getPrefix(guild) + "prefix")) {
-            changePrefix(guild, msg.getContentRaw().substring(msg.getContentRaw().lastIndexOf("prefix") + 1));
-            msg.getChannel().sendMessage("The prefix has been changed to *" + msg.getContentRaw().substring(msg.getContentRaw().lastIndexOf("prefix") + 1) + "*").queue();
-            System.out.println("we got here");
+        if(msg.getContentRaw().contains(BESTPREFIX + "prefix") || msg.getContentRaw().contains(getPrefix(guild) + "prefix")) {
+            changePrefix(guild, msg.getContentRaw().substring(msg.getContentRaw().lastIndexOf("prefix") + 7));
+            msg.getChannel().sendMessage("The prefix has been changed to *" + msg.getContentRaw().substring(msg.getContentRaw().lastIndexOf("prefix") + 7) + "*").queue();
+            //System.out.println("we got here");
         }
     }
 
     private static void changePrefix(Guild guild, String prefixId) {
         for(int i = 0; i < prefix.size(); i++) {
             if(prefix.get(i)[i][0].equals(guild.getId())) {
-                String[][] string = new String[1][0];
+                String[][] string = new String[3][3];
                 string[1][0] = guild.getId();
-                string[0][0] = prefixId;
+                string[0][1] = prefixId;
+                System.out.println(string[1][0]);
                 prefix.set(i, string);
             } else {
-                String[][] string = new String[1][0];
+                String[][] string = new String[3][3];
                 string[1][0] = guild.getId();
-                string[0][0] = prefixId;
+                string[0][1] = prefixId;
+                System.out.println("here");
+                System.out.println(string[1][0]);
                 prefix.add(string);
             }
         }
@@ -51,16 +54,11 @@ public class Main extends ListenerAdapter implements EventListener {
     private static String getPrefix(Guild guild) {
         for(int i = 0; i < prefix.size(); i++) {
             if(prefix.get(i)[i][0].equals(guild.getId()))
-                return(prefix.get(i)[i][0]);
+                return(prefix.get(i)[i][1]);
         }
         return "This should never happen wtf";
     }
-    private static void establishConnection() {
-        try {
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+
     private static String getToken() {
         String token = "";
         try(InputStream input = new FileInputStream("src/main/resources/config.properties")) {
