@@ -1,23 +1,65 @@
-import discord4j.core.DiscordClient;
-import discord4j.core.DiscordClientBuilder;
+import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
+import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.hooks.EventListener;
+import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+import javax.security.auth.login.LoginException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 import java.util.Properties;
 
-public class Main {
-    public static void main(String[] args) {
-        //stores token from config file
-        String token = getToken();
+public class Main extends ListenerAdapter implements EventListener {
+    static final String BESTPREFIX = ".";
+    static List<String[][]> prefix;
 
-        //builds client with token
-        DiscordClient client = new DiscordClientBuilder(token).build();
+    public static void main(String[] args) throws LoginException {
+        JDA jda = new JDABuilder(getToken()).addEventListeners(new Main()).setActivity(Activity.watching("my master create me")).build();
+    }
+    @Override
+    public void onMessageRecieved(MessageReceivedEvent event) {
+        Message msg = event.getMessage();
+        Guild guild = msg.getGuild();
+        if(msg.getContentRaw().equals(BESTPREFIX + "prefix") || msg.getContentRaw().equals(getPrefix(guild) + "prefix")) {
+            changePrefix(guild, msg.getContentRaw().substring(msg.getContentRaw().lastIndexOf("prefix") + 1));
+            msg.getChannel().sendMessage("The prefix has been changed to *" + msg.getContentRaw().substring(msg.getContentRaw().lastIndexOf("prefix") + 1) + "*").queue();
+            System.out.println("we got here");
+        }
+    }
 
-        //establishes a connection to server
-        client.login().block();
+    private static void changePrefix(Guild guild, String prefixId) {
+        for(int i = 0; i < prefix.size(); i++) {
+            if(prefix.get(i)[i][0].equals(guild.getId())) {
+                String[][] string = new String[1][0];
+                string[1][0] = guild.getId();
+                string[0][0] = prefixId;
+                prefix.set(i, string);
+            } else {
+                String[][] string = new String[1][0];
+                string[1][0] = guild.getId();
+                string[0][0] = prefixId;
+                prefix.add(string);
+            }
+        }
+    }
 
-        //send a message to say hello
+    private static String getPrefix(Guild guild) {
+        for(int i = 0; i < prefix.size(); i++) {
+            if(prefix.get(i)[i][0].equals(guild.getId()))
+                return(prefix.get(i)[i][0]);
+        }
+        return "This should never happen wtf";
+    }
+    private static void establishConnection() {
+        try {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
     private static String getToken() {
         String token = "";
