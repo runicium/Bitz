@@ -19,13 +19,11 @@ import java.util.concurrent.TimeUnit;
 public class Main extends ListenerAdapter implements EventListener {
     static final private String  BESTPREFIX = ".";
     static private List<String[][]> prefix = new ArrayList<>();
-
+    static private String lastmessage = "";
     public static void main(String[] args) throws LoginException {
-        createTimer();
         JDA jda = new JDABuilder(getToken()).addEventListeners(new Main()).setActivity(Activity.watching("my master create me")).build();
     }
     public void onMessageReceived(MessageReceivedEvent event) {
-
         Message msg = event.getMessage();
         Guild guild = msg.getGuild();
 
@@ -44,19 +42,46 @@ public class Main extends ListenerAdapter implements EventListener {
             getWeather();
             msg.getChannel().sendMessage(getWeather().build()).queue();
         }
+        if(lastmessage.contains(BESTPREFIX +"notify") && msg.getContentRaw().contains(":") && !event.getAuthor().isBot() && !lastmessage.contains(":")) {
+            lastmessage = msg.getContentRaw();
+            String hour = msg.getContentRaw().substring(0,2);
+            int nhour = Integer.parseInt(hour);
+            String minute = msg.getContentRaw().substring(3,5);
+            int nminute = Integer.parseInt(minute);
+            createTimer(event.getGuild(), nhour, nminute, msg);
+            msg.getChannel().sendMessage("The time you input is: " + msg.getContentRaw()).queue();
+        }
+        if(msg.getContentRaw().contains(BESTPREFIX +"notify") || msg.getContentRaw().contains(getPrefix(guild) + "notify")) {
+            lastmessage = msg.getContentRaw();
+            if(msg.getContentRaw().contains(":")) {
+                String hour = msg.getContentRaw().substring(msg.getContentRaw().indexOf(":") - 2, msg.getContentRaw().lastIndexOf(":"));
+                int nhour = Integer.parseInt(hour);
+                System.out.println(nhour);
+                String minute = msg.getContentRaw().substring(msg.getContentRaw().indexOf(":") + 1 ,msg.getContentRaw().indexOf(":") + 3 );
+                int nminute = Integer.parseInt(minute);
+                System.out.println(nminute);
+
+                createTimer(event.getGuild(), nhour, nminute, msg);
+                msg.getChannel().sendMessage("The time you input is: " + msg.getContentRaw().substring(msg.getContentRaw().indexOf(":") - 2)).queue();
+            }
+            else {
+                msg.getChannel().sendMessage("Please input a time you would like to be notified (use military time; Ex: 21:30 or 01:20)").queue();
+
+            }
+        }
 
     }
-    private static void createTimer() {
+    private static void createTimer(Guild guild, int hour, int minute, Message msg) {
         Calendar today = Calendar.getInstance();
-        today.set(Calendar.HOUR_OF_DAY, 1);
-        today.set(Calendar.MINUTE, 35);
+        today.set(Calendar.HOUR_OF_DAY, hour);
+        today.set(Calendar.MINUTE, minute);
         today.set(Calendar.SECOND, 0);
 
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {
             @Override
             public void run() {
-                Main.getWeather();
+                msg.getChannel().sendMessage(getWeather().build()).queue();
             }
         };
 
@@ -71,12 +96,13 @@ public class Main extends ListenerAdapter implements EventListener {
 
         String information = fio.getCurrently().toString();
         String humidity = information.substring(information.lastIndexOf("humidity") + 10, information.lastIndexOf("pressure") - 2);
+        double inthumidity = Double.parseDouble(humidity);
         String temperature = information.substring(information.lastIndexOf("temperature") + 13, information.lastIndexOf("apparentTemperature") - 2);
         String wind = information.substring(information.lastIndexOf("windSpeed") + 11, information.lastIndexOf("windGust") - 2);
         String rain = information.substring(information.lastIndexOf("precipProbability") + 19, information.indexOf("temperature") - 2);
         MessageBuilder messagebuild = new MessageBuilder(
-                "**The current weather information is:** \r\n" +
-                "Humidity: " + humidity +
+                "**The current weather information is:** " +
+                "\nHumidity: " + inthumidity*100 + "%" +
                 "\r\nTemperature: " + temperature + "F" +
                 "\r\nWind: " + wind + "mph" +
                 "\r\nChance of Rain: " + rain + "%"
