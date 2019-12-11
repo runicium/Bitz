@@ -1,5 +1,7 @@
+package john.ajay;
+// Local-based API imports
+import john.ajay.alt.*;
 // Net-based API imports
-
 import com.github.dvdme.ForecastIOLib.ForecastIO;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -31,6 +33,7 @@ public class Main extends ListenerAdapter implements EventListener {
 
     public static void main(String[] args) throws LoginException {
         JDA jda = new JDABuilder(getToken()).addEventListeners(new Main()).setActivity(Activity.watching("my master create me")).build();
+        jda.addEventListener(new BasicCommands());
     }
 
     public void onMessageReceived(MessageReceivedEvent event) {
