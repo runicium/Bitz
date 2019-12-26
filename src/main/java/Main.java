@@ -1,6 +1,4 @@
-package john.ajay;
 // Local-based API imports
-import john.ajay.alt.*;
 // Net-based API imports
 import com.github.dvdme.ForecastIOLib.ForecastIO;
 import net.dv8tion.jda.api.JDA;
