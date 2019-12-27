@@ -2,7 +2,7 @@ import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
-public class BasicCommands extends ListenerAdapter {
+public class Commands extends ListenerAdapter {
 
     private Message msg;
     private String rawMsg;
@@ -15,7 +15,7 @@ public class BasicCommands extends ListenerAdapter {
         if(rawMsg.contains(".help")) {
             displayHelp();
         }
-        if(rawMsg.contains(".sban")) {
+        else if(rawMsg.contains(".sban")) {
             softBan();
         }
     }

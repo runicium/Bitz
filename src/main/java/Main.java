@@ -31,7 +31,7 @@ public class Main extends ListenerAdapter implements EventListener {
 
     public static void main(String[] args) throws LoginException {
         JDA jda = new JDABuilder(getToken()).addEventListeners(new Main()).setActivity(Activity.watching("my master create me")).build();
-        jda.addEventListener(new BasicCommands());
+        jda.addEventListener(new Commands());
     }
 
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -44,16 +44,16 @@ public class Main extends ListenerAdapter implements EventListener {
             msg.getChannel().sendMessage("The prefix has been changed to **" + msg.getContentRaw().substring(msg.getContentRaw().lastIndexOf("prefix") + 7) + "**").queue();
         }
 
-        if (msg.getContentRaw().contains(BESTPREFIX + "getprefix") || msg.getContentRaw().contains(getPrefix(guild) + "getprefix")) {
+        else if (msg.getContentRaw().contains(BESTPREFIX + "getprefix") || msg.getContentRaw().contains(getPrefix(guild) + "getprefix")) {
             System.out.println("This is the current prefix assigned to the server: " + getPrefix(guild));
             msg.getChannel().sendMessage("Your current prefix is: **" + getPrefix(guild) + "**").queue();
         }
 
-        if (msg.getContentRaw().contains(BESTPREFIX + "weather") || msg.getContentRaw().contains(getPrefix(guild) + "weather")) {
+        else if (msg.getContentRaw().contains(BESTPREFIX + "weather") || msg.getContentRaw().contains(getPrefix(guild) + "weather")) {
             getWeather();
             msg.getChannel().sendMessage(getWeather().build()).queue();
         }
-        if (lastMessage.contains(BESTPREFIX + "notify") && msg.getContentRaw().contains(":") && !event.getAuthor().isBot() && !lastMessage.contains(":")) {
+        else if (lastMessage.contains(BESTPREFIX + "notify") && msg.getContentRaw().contains(":") && !event.getAuthor().isBot() && !lastMessage.contains(":")) {
             lastMessage = msg.getContentRaw();
             String hour = msg.getContentRaw().substring(0, 2);
             int nhour = Integer.parseInt(hour);
@@ -62,7 +62,7 @@ public class Main extends ListenerAdapter implements EventListener {
             createTimer(event.getGuild(), nhour, nminute, msg);
             msg.getChannel().sendMessage("The time you input is: " + msg.getContentRaw()).queue();
         }
-        if (msg.getContentRaw().contains(BESTPREFIX + "notify") || msg.getContentRaw().contains(getPrefix(guild) + "notify")) {
+        else if (msg.getContentRaw().contains(BESTPREFIX + "notify") || msg.getContentRaw().contains(getPrefix(guild) + "notify")) {
             lastMessage = msg.getContentRaw();
             if (msg.getContentRaw().contains(":")) {
                 String hour = msg.getContentRaw().substring(msg.getContentRaw().indexOf(":") - 2, msg.getContentRaw().lastIndexOf(":"));
