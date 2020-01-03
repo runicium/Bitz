@@ -1,19 +1,16 @@
-// Local-based API imports
-// Net-based API imports
-
+// JDA API imports
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 import net.dv8tion.jda.api.hooks.EventListener;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
-
+// Java-based API imports
 import javax.security.auth.login.LoginException;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
-// Java-based API imports
 
 /**
  * @author Ajay Seedoo, John Boyd

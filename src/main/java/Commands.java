@@ -1,4 +1,6 @@
+//Weather API imports
 import com.github.dvdme.ForecastIOLib.ForecastIO;
+//JDA API imports
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Message;
@@ -6,6 +8,7 @@ import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
+//Java-based API imports
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -121,7 +124,7 @@ public class Commands extends ListenerAdapter {
         String temperature = information.substring(information.lastIndexOf("temperature") + 13, information.lastIndexOf("apparentTemperature") - 2);
         String wind = information.substring(information.lastIndexOf("windSpeed") + 11, information.lastIndexOf("windGust") - 2);
         String rain = information.substring(information.lastIndexOf("precipProbability") + 19, information.indexOf("temperature") - 2);
-        MessageBuilder messagebuild = new MessageBuilder(
+        MessageBuilder msgBuild = new MessageBuilder(
                 "**The current weather information is:** " +
                         "\nHumidity: " + humidity * 100 + "%" +
                         "\r\nTemperature: " + temperature + "F" +
@@ -136,7 +139,7 @@ public class Commands extends ListenerAdapter {
         System.out.println("Humidity: " + fio.getCurrently().toString().substring(fio.getCurrently().toString().lastIndexOf("humidity") + 10, fio.getCurrently().toString().lastIndexOf("humidity") + 14));
         System.out.println("Temperature: " + fio.getCurrently().toString().substring(fio.getCurrently().toString().lastIndexOf("temperature") + 13, fio.getCurrently().toString().lastIndexOf("temperature") + 18));
 
-        return messagebuild;
+        return msgBuild;
 
     }
     /* unused
@@ -150,15 +153,13 @@ public class Commands extends ListenerAdapter {
                 return (true);
             }
         }
-
         String[][] goodstring = new String[2][1];
         goodstring[0][0] = guild.getId();
         goodstring[1][0] = prefixId;
         prefix.add(goodstring);
         return (true);
-    }*/
+    }
 
-    /* unused
     private static String getPrefix(Guild guild) {
         for (String[][] strings : prefix) {
             if (strings[0][0].equals(guild.getId()))
