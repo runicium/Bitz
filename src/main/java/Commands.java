@@ -1,14 +1,23 @@
 //Weather API imports
+
 import com.github.dvdme.ForecastIOLib.ForecastIO;
 //JDA API imports
 import net.dv8tion.jda.api.MessageBuilder;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Invite;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.User;
+/* import net.dv8tion.jda.api.entities.User; unused*/
+import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 //Java-based API imports
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.*;
 import java.util.concurrent.TimeUnit;
 
@@ -16,20 +25,20 @@ public class Commands extends ListenerAdapter {
 
     private String DEFAULTPREFIX = "."; //The prefix at the beginning of of message that is by default used to call the bot
     /* private ArrayList<GuildPrefixes> prefix = new ArrayList<>(); */ //A list of Strings that the prefix has been changed to (unused)
-    private Message msg;
-    private String rawMsg;
+
+    private ArrayList<Invite.Channel> archivedChannels = new ArrayList<>();
     private Guild guild;
 
     public void onMessageReceived(MessageReceivedEvent event) {
 
-        msg = event.getMessage();
-        rawMsg = msg.getContentRaw();
-        guild = msg.getGuild();
+        Message msg = event.getMessage();
+        String rawMsg = msg.getContentRaw();
+        Guild guild = msg.getGuild();
 
         if (rawMsg.contains(".help")) {
             try {
                 System.out.print("Displaying help... ");
-                displayHelp();
+                displayHelp(msg);
                 System.out.println("Success!");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -59,25 +68,41 @@ public class Commands extends ListenerAdapter {
                 System.out.print("Sending weather information... ");
                 msg.getChannel().sendMessage(getWeather().build()).queue();
                 System.out.println("Success!");
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        else if (rawMsg.contains(DEFAULTPREFIX + "notify") && !event.getAuthor().isBot()) {
-            if (rawMsg.contains(":")) {
+        } else if (rawMsg.contains(DEFAULTPREFIX + "notify") && !event.getAuthor().isBot()) {
+            try {
+                System.out.print("Parsing time... ");
                 int hour = Integer.parseInt(msg.getContentRaw().substring(8, 10));
                 int minute = Integer.parseInt(msg.getContentRaw().substring(11, 13));
+                System.out.println("Success!");
+                System.out.println("Setting weather notification... ");
                 createTimer(event.getGuild(), hour, minute, msg);
+                System.out.println("Success!");
                 msg.getChannel().sendMessage("The time you input is: " + msg.getContentRaw().substring(8)).queue();
-            }
-            else {
+            } catch (IndexOutOfBoundsException e) {
                 msg.getChannel().sendMessage("Please input a time you would like to be notified (use military time; Ex: 21:30 is 9:30 PM)").queue();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } else if (rawMsg.contains(DEFAULTPREFIX + "archive") && !event.getAuthor().isBot()) {
+            try {
+                System.out.print("Retrieving channel... ");
+                TextChannel channel = msg.getMentionedChannels().get(0);
+                System.out.println("Success!");
+                System.out.println("Writing messages from " + channel.getName() + " to file... ");
+                archiveChannel(channel, msg);
+                System.out.println("Success!");
+            } catch (IndexOutOfBoundsException e) {
+
+            } catch (Exception e) {
+
             }
         }
     }
 
-    private void displayHelp() {
+    private void displayHelp(Message msg) {
         msg.getChannel().sendMessage("figure it out nerd").queue();
     }
 
@@ -112,7 +137,7 @@ public class Commands extends ListenerAdapter {
         timer.scheduleAtFixedRate(task, today.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
     }
 
-    private static MessageBuilder getWeather() {
+    private MessageBuilder getWeather() {
         ForecastIO fio = new ForecastIO("432f74725dc976dbf0c43574a6d874bb");
         fio.setUnits(ForecastIO.UNITS_US);
         fio.setLang(ForecastIO.LANG_ENGLISH);
@@ -167,4 +192,26 @@ public class Commands extends ListenerAdapter {
         }
         return "This should never happen wtf";
     } */
+
+    private void archiveChannel(TextChannel channel, Message requestMsg) {
+        String channelMessages = "";
+        List<Message> messageHistory = channel.getIterableHistory().complete();
+        File archiveFile = new File(channel.getName() + "-archive.txt");
+        for (Message message : messageHistory) {
+            channelMessages += message.getTimeCreated().toLocalDateTime().format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM)) + ": ";
+            channelMessages += message.getAuthor().getName() + ":\n";
+            channelMessages += message.getContentDisplay() + "\n\n";
+        }
+        System.out.println(channelMessages);
+        try {
+            FileWriter historyWrite = new FileWriter(archiveFile);
+            historyWrite.write(channelMessages);
+        } catch (IOException e) {
+            System.err.println("Failed to create file.");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        requestMsg.getChannel().sendMessage("Archives of " + channel.getName()).addFile(new File(channel.getName() + "-archive.txt")).queue();
+    }
 }

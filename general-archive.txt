@@ -1,0 +1,361 @@
+Dec 22, 2019, 1:26:53 AM: Earth-chan:
+Your current balance is: 0
+
+Dec 22, 2019, 1:26:53 AM: Ulyphys:
+.balance
+
+Dec 22, 2019, 1:26:49 AM: Earth-chan:
+You added money to your account! 100
+
+Dec 22, 2019, 1:26:49 AM: Ulyphys:
+.addmoney 100
+
+Dec 22, 2019, 1:26:45 AM: Earth-chan:
+Your current balance is: 0
+
+Dec 22, 2019, 1:26:45 AM: Ulyphys:
+.balance
+
+Dec 11, 2019, 5:54:54 PM: Ulyphys:
+.sban @Ulyphys
+
+Dec 11, 2019, 5:54:28 PM: Ulyphys:
+.sban @Ulyphys
+
+Dec 11, 2019, 5:54:20 PM: Ulyphys:
+.sban
+
+Dec 11, 2019, 5:53:59 PM: Ulyphys:
+.sban
+
+Dec 11, 2019, 5:41:29 PM: Ulyphys:
+yay
+
+Dec 11, 2019, 5:41:26 PM: Earth-chan:
+figure it out nerd
+
+Dec 11, 2019, 5:41:26 PM: Ulyphys:
+.help
+
+Dec 11, 2019, 5:41:08 PM: Ulyphys:
+aw
+
+Dec 11, 2019, 5:41:03 PM: Ulyphys:
+.help
+
+Dec 11, 2019, 5:40:59 PM: Ulyphys:
+.jrlp
+
+Dec 11, 2019, 4:04:48 PM: Ulyphys:
+rip
+
+Dec 11, 2019, 4:03:13 PM: SmartFartz:
+Not yet
+
+Dec 11, 2019, 3:56:39 PM: Ulyphys:
+@Lead Programmer 2 you ever figure it out?
+
+Dec 11, 2019, 12:38:48 AM: Ulyphys:
+also i installed a shadow plugin so you can just build it into a jar file
+
+Dec 11, 2019, 12:24:00 AM: Ulyphys:
+intellij
+
+Dec 11, 2019, 12:23:55 AM: SmartFartz:
+Run on Intellij or on Discord?
+
+Dec 11, 2019, 12:23:38 AM: Ulyphys:
+just run main and it'll start
+
+Dec 11, 2019, 12:23:30 AM: Ulyphys:
+i don't got a dedicated server at school to run this one tf
+
+Dec 11, 2019, 12:23:17 AM: Ulyphys:
+nope its hosted whenever i click run
+
+Dec 11, 2019, 12:23:13 AM: SmartFartz:
+That makes sense
+
+Dec 11, 2019, 12:23:04 AM: SmartFartz:
+It's hosted at school isn't it
+
+Dec 11, 2019, 12:22:52 AM: Ulyphys:
+well its not online john
+
+Dec 11, 2019, 12:22:49 AM: SmartFartz:
+@Earth-chan notify 0:00
+
+Dec 11, 2019, 12:22:28 AM: SmartFartz:
+Smh
+
+Dec 11, 2019, 12:22:26 AM: SmartFartz:
+Bruh no help function?
+
+Dec 11, 2019, 12:22:16 AM: SmartFartz:
+@Earth-chan help
+
+Dec 11, 2019, 12:21:53 AM: SmartFartz:
+.help
+
+Dec 10, 2019, 6:35:20 PM: Earth-chan:
+The time you input is: 13:50
+
+Dec 10, 2019, 6:35:20 PM: Ulyphys:
+@Earth-chan notify 13:50
+
+Dec 10, 2019, 6:34:58 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 69.0%
+Temperature: 82.9F
+Wind: 12.78mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 6:34:58 PM: Ulyphys:
+@Earth-chan weather
+
+Dec 10, 2019, 6:34:45 PM: Earth-chan:
+The prefix has been changed to **@Earth-chan**
+
+Dec 10, 2019, 6:34:45 PM: Ulyphys:
+.prefix @Earth-chan
+
+Dec 10, 2019, 6:32:55 PM: Ulyphys:
+there we go
+
+Dec 10, 2019, 6:32:52 PM: Earth-chan:
+The prefix has been changed to **@Earth-chan**
+
+Dec 10, 2019, 6:32:52 PM: Ulyphys:
+.prefix @Earth-chan
+
+Dec 10, 2019, 6:32:38 PM: Earth-chan:
+The prefix has been changed to **ServerBot#1927**
+
+Dec 10, 2019, 6:32:38 PM: Ulyphys:
+.prefix ServerBot#1927
+
+Dec 10, 2019, 6:32:19 PM: Ulyphys:
+oh no
+
+Dec 10, 2019, 6:32:09 PM: Earth-chan:
+The prefix has been changed to **@Ulyphys**
+
+Dec 10, 2019, 6:32:09 PM: SmartFartz:
+.prefix @Ulyphys
+
+Dec 10, 2019, 6:32:00 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 69.0%
+Temperature: 82.92F
+Wind: 12.79mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 6:31:55 PM: Earth-chan:
+The time you input is: 13:32
+
+Dec 10, 2019, 6:31:54 PM: Ulyphys:
+@Lead Programmer 2 notify 13:32
+
+Dec 10, 2019, 6:31:40 PM: Ulyphys:
+Thats a lie
+
+Dec 10, 2019, 6:31:35 PM: Ulyphys:
+that was braydon
+
+Dec 10, 2019, 6:31:28 PM: SmartFartz:
+Why
+
+Dec 10, 2019, 6:31:22 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 69.0%
+Temperature: 82.93F
+Wind: 12.79mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 6:31:22 PM: Ulyphys:
+@Lead Programmer 2 weather
+
+Dec 10, 2019, 6:31:14 PM: Earth-chan:
+The prefix has been changed to **@Lead Programmer 2**
+
+Dec 10, 2019, 6:31:14 PM: Ulyphys:
+.prefix @Lead Programmer 2
+
+Dec 10, 2019, 4:26:56 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 74.0%
+Temperature: 81.84F
+Wind: 12.43mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:26:56 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 74.0%
+Temperature: 81.84F
+Wind: 12.43mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:26:55 PM: Ulyphys:
+flawless code
+
+Dec 10, 2019, 4:26:51 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 74.0%
+Temperature: 81.84F
+Wind: 12.43mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:26:51 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 74.0%
+Temperature: 81.84F
+Wind: 12.43mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:26:51 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 74.0%
+Temperature: 81.84F
+Wind: 12.43mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:26:51 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 74.0%
+Temperature: 81.84F
+Wind: 12.43mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:26:51 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 74.0%
+Temperature: 81.84F
+Wind: 12.43mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:26:46 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 74.0%
+Temperature: 81.84F
+Wind: 12.43mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:26:46 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 74.0%
+Temperature: 81.84F
+Wind: 12.43mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:26:46 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 74.0%
+Temperature: 81.84F
+Wind: 12.43mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:26:46 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 74.0%
+Temperature: 81.84F
+Wind: 12.43mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:26:46 PM: Earth-chan:
+The time you input is: 01:20
+
+Dec 10, 2019, 4:26:45 PM: Ulyphys:
+.notify 01:20
+
+Dec 10, 2019, 4:26:34 PM: Ulyphys:
+crap
+
+Dec 10, 2019, 4:26:29 PM: Ulyphys:
+.notify 01:20
+
+Dec 10, 2019, 4:26:25 PM: Ulyphys:
+ready to watch a spam machine
+
+Dec 10, 2019, 4:20:00 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 73.0%
+Temperature: 81.85F
+Wind: 12.5mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:19:51 PM: Earth-chan:
+The time you input is: 11:20
+
+Dec 10, 2019, 4:19:51 PM: Ulyphys:
+.notify 11:20
+
+Dec 10, 2019, 4:19:48 PM: Ulyphys:
+tf
+
+Dec 10, 2019, 4:19:47 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 73.0%
+Temperature: 81.85F
+Wind: 12.5mph
+Chance of Rain: 0%
+
+Dec 10, 2019, 4:19:46 PM: Earth-chan:
+The time you input is: 01:20
+
+Dec 10, 2019, 4:19:46 PM: Ulyphys:
+.notify 01:20
+
+Dec 10, 2019, 4:19:10 PM: Ulyphys:
+help the bot no work
+
+Dec 10, 2019, 4:18:49 PM: Tommy:
+Ha
+
+Dec 10, 2019, 4:18:03 PM: Ulyphys:
+i was confused
+
+Dec 10, 2019, 4:18:00 PM: Ulyphys:
+i was typing in commands and discord disconnected
+
+Dec 10, 2019, 4:17:47 PM: Tommy:
+Test
+
+Dec 10, 2019, 4:08:00 PM: Ulyphys:
+test
+
+Dec 9, 2019, 6:58:33 PM: SmartFartz:
+Noicr
+
+Dec 9, 2019, 6:25:17 PM: Ulyphys:
+cool
+
+Dec 9, 2019, 6:25:00 PM: Earth-chan:
+**The current weather information is:** 
+Humidity: 0.62%
+Temperature: 81.11F
+Wind: 10.38mph
+Chance of Rain: 0%
+
+Dec 9, 2019, 6:23:24 PM: Ulyphys:
+now we wait
+
+Dec 9, 2019, 6:23:21 PM: Earth-chan:
+The time you inputed is: 13:25
+
+Dec 9, 2019, 6:23:20 PM: Ulyphys:
+13:25
+
+Dec 9, 2019, 6:23:17 PM: Earth-chan:
+Please input a time you would like to be notified (use military time; Ex: 21:30 or 01:20)
+
+Dec 9, 2019, 6:23:17 PM: Ulyphys:
+.notify
+
+Dec 9, 2019, 6:11:08 PM: Earth-chan:
+The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: Please input a time you would like to be notified (use military time; Ex: 21:30)
+
+Dec 9, 2019, 6:11:07 PM: Earth-chan:
+The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: The time you inputed is: Please input a time you would like to be notified (use military time; Ex: 21:30)
+
+Dec 9, 2019, 6:11:07 PM: Earth-chan:
+The time you inputed is: The time you inputed is: The time you inputed is: The time 
