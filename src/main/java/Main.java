@@ -21,26 +21,27 @@ import java.util.Properties;
 public class Main extends ListenerAdapter implements EventListener {
 
     public static void main(String[] args) throws LoginException {
-        JDA jda = new JDABuilder(getToken()).addEventListeners(new Main()).setActivity(Activity.watching("my masters create me")).build();
+        JDA jda = new JDABuilder(getToken()).addEventListeners(new Main()).setActivity(Activity.watching("joe mama")).build();
         jda.addEventListener(new Commands());
     }
 
-    private static String getToken() {
+    public static String getToken() {//getToken method
         String token = "";
-        try (InputStream input = new FileInputStream("src/main/resources/config.properties")) {
+
+        try (InputStream input = new FileInputStream("src/main/resources/config.properties")) {//start try statement
             Properties prop = new Properties();
-
-            //loads properties file
             prop.load(input);
-
-            //pulls token
             token = prop.getProperty("token");
-
-            //prints token
-            //System.out.println(token);
-        } catch (IOException e) {
+        }//end try statement
+        catch (IOException e) {//start catch statement
             e.printStackTrace();
-        }
+            System.out.println("Enter the bot token: ");
+            Scanner in = new Scanner(System.in);
+            token = in.nextLine();
+            in.close();
+        }//end catch statement
+
         return token;
+    }//end getToken method
     }
 }

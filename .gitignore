@@ -1,1 +1,5 @@
 /src/main/resources/config.properties
+general-archive.txt
+/.gradle/
+/.idea/
+/build/
