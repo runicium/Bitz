@@ -10,6 +10,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import java.util.Scanner;
 
 
 /**
@@ -26,7 +27,7 @@ public class Main extends ListenerAdapter implements EventListener {
     }
 
     public static String getToken() {//getToken method
-        String token = "";
+        String token;
 
         try (InputStream input = new FileInputStream("src/main/resources/config.properties")) {//start try statement
             Properties prop = new Properties();
@@ -43,5 +44,4 @@ public class Main extends ListenerAdapter implements EventListener {
 
         return token;
     }//end getToken method
-    }
 }

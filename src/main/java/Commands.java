@@ -111,9 +111,9 @@ public class Commands extends ListenerAdapter {
             }
         } else if (rawMsg.toLowerCase().contains("when i figure out how to win")) {
             msg.getChannel().sendMessage("https://i.kym-cdn.com/photos/images/original/001/686/103/937").queue();
-        } else if (rawMsg.contains("!obama")) {//start else-if statement
+        } else if (rawMsg.contains(DEFAULTPREFIX + "obama")) {//start else-if statement
             obamaAudio(msg);
-        } else if (rawMsg.contains("!baby")){
+        } else if (rawMsg.contains(DEFAULTPREFIX + "baby")){
             getBaby(msg);
         }
     }
