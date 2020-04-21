@@ -29,17 +29,19 @@ public class Main extends ListenerAdapter implements EventListener {
     public static String getToken() {//getToken method
         String token;
 
-        try (InputStream input = new FileInputStream("config.properties")) {//start try statement
+        try (InputStream input = new FileInputStream("/home/ubuntu/bot/config.properties")) {//start try statement
             Properties prop = new Properties();
             prop.load(input);
             token = prop.getProperty("token");
         }//end try statement
         catch (IOException e) {//start catch statement
             e.printStackTrace();
+            System.out.println(System.getProperty("user.dir"));
             System.out.println("Enter the bot token: ");
             Scanner in = new Scanner(System.in);
             token = in.nextLine();
             in.close();
+            System.exit(0);
         }//end catch statement
 
         return token;
