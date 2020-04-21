@@ -29,7 +29,7 @@ public class Main extends ListenerAdapter implements EventListener {
     public static String getToken() {//getToken method
         String token;
 
-        try (InputStream input = new FileInputStream("src/main/resources/config.properties")) {//start try statement
+        try (InputStream input = new FileInputStream("config.properties")) {//start try statement
             Properties prop = new Properties();
             prop.load(input);
             token = prop.getProperty("token");

@@ -1,7 +1,13 @@
 plugins {
     id 'java'
+    id 'application'
     id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
+
+sourceCompatibility = 1.8
+
+mainClassName = "Main"
+apply plugin: 'java'
 
 group 'john.ajay'
 version '1.0-SNAPSHOT'
