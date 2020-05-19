@@ -1,5 +1,6 @@
 //Weather API imports
 
+import audio.TrackScheduler;
 import com.gargoylesoftware.htmlunit.WebClient;
 import com.gargoylesoftware.htmlunit.html.HtmlForm;
 import com.gargoylesoftware.htmlunit.html.HtmlPage;
@@ -11,13 +12,16 @@ import com.github.jreddit.retrieval.Submissions;
 import com.github.jreddit.retrieval.params.SubmissionSort;
 import com.github.jreddit.utils.restclient.HttpRestClient;
 import com.github.jreddit.utils.restclient.RestClient;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
+import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
+import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import net.dv8tion.jda.api.MessageBuilder;
-import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.Invite;
-import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.*;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
+import net.dv8tion.jda.api.managers.AudioManager;
+import net.dv8tion.jda.api.managers.GuildManager;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -31,7 +35,7 @@ import java.util.concurrent.TimeUnit;
 /* import net.dv8tion.jda.api.entities.User; unused*/
 //Java-based API imports
 
-public class Commands extends ListenerAdapter {
+public class Commands extends ListenerAdapter{
 
     private String DEFAULTPREFIX = "."; //The prefix at the beginning of of message that is by default used to call the bot
     /* private ArrayList<GuildPrefixes> prefix = new ArrayList<>(); */ //A list of Strings that the prefix has been changed to (unused)
@@ -44,6 +48,40 @@ public class Commands extends ListenerAdapter {
         Message msg = event.getMessage();
         String rawMsg = msg.getContentRaw();
         Guild guild = msg.getGuild();
+        if(rawMsg.contains(DEFAULTPREFIX + "join")) {
+            try{
+                //Gets voice channel from the user that sent the command
+                VoiceChannel voiceChannel = msg.getMember().getVoiceState().getChannel();
+                AudioManager audioManager = guild.getAudioManager();
+                audioManager.openAudioConnection(voiceChannel);
+            } catch (Exception e) {
+                e.printStackTrace();
+                msg.getChannel().sendMessage("Are you even in a fucking voice channel idiot").queue();
+            }
+        }
+        if(rawMsg.contains(DEFAULTPREFIX + "leave")) {
+            try{
+                AudioManager audioManager = guild.getAudioManager();
+                audioManager.closeAudioConnection();
+            } catch (Exception e) {
+                e.printStackTrace();
+                msg.getChannel().sendMessage("How the fuck am I going to leave if I'm not even there").queue();
+            }
+        }
+        if(rawMsg.contains(DEFAULTPREFIX + "play")) {
+            try {
+                String link = rawMsg.substring(6);
+                System.out.println(link);
+                AudioPlayerManager playerManager = new DefaultAudioPlayerManager();
+                AudioSourceManagers.registerRemoteSources(playerManager);
+                AudioPlayer player = playerManager.createPlayer();
+                TrackScheduler trackScheduler = new TrackScheduler(player);
+                player.addListener(trackScheduler);
+                GuildManager musicManager;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
 
         if (rawMsg.contains(DEFAULTPREFIX + "help")) {
             try {
@@ -286,5 +324,4 @@ public class Commands extends ListenerAdapter {
             msg.getChannel().sendMessage("Error occurred").queue();
         }
     }
-
-    }
+}
